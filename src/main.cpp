@@ -1,3 +1,9 @@
+/* 
+- TEST_TEENSY41_PWM
+- Author: takurx, taku3wr@gmail.com
+- Ref. https://www.pjrc.com/teensy/td_pulse.html
+*/
+
 #include <Arduino.h>
 
 void setup() {
