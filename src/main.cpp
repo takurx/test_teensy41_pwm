@@ -11,6 +11,7 @@ int pwm_width;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  Serial1.begin(115200);
   delay(3000);
 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -21,14 +22,19 @@ void setup() {
   pinMode(28, OUTPUT);
   pinMode(25, OUTPUT);
   pinMode(24, OUTPUT);
-  //pinMode(12, OUTPUT);
-  //pinMode(11, OUTPUT);
-  //pinMode(10, OUTPUT);
-  //pinMode( 9, OUTPUT);
+  
+#if 1
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode( 9, OUTPUT);
+  digitalWrite(12, LOW);
   //digitalWrite(12, HIGH);
-  //digitalWrite(11, LOW);
-  //digitalWrite(10, LOW);
-  //digitalWrite( 9, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite( 9, LOW);
+#endif
+
   //analogWriteFrequency(3, 375000); // Teensy 3.0 pin 3 also changes to 375 kHz
   //analogWriteFrequency(3, 1000000); // Teensy 4.1 pin 3 also changes to 1000 kHz
   //analogWriteFrequency(3, 50); // Teensy 4.1 pin 3 also changes to 50 kHz
@@ -39,7 +45,8 @@ void setup() {
   //analogWriteResolution(8);  // analogWrite value 0 to 255, or 256 for high
   analogWriteResolution(15);  // analogWrite value 0 to 4095, or 4096 for high
 
-  float pwm_width_percentage = 900.0 / 20000 * (1<<15);
+  //float pwm_width_percentage = 900.0 / 20000 * (1<<15);
+  float pwm_width_percentage = 1000.0 / 20000 * (1<<15);
   float pwm_width_percentage_28 = 500.0 / 20000 * (1<<15);
   float pwm_width_percentage_25 = 1500.0 / 20000 * (1<<15);
   float pwm_width_percentage_24 = 2000.0 / 20000 * (1<<15);
@@ -84,4 +91,40 @@ void loop() {
   digitalWrite( 9, LOW);
   delay(30);
   */
+
+  /*
+  digitalWrite(12, HIGH);
+  digitalWrite(11, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite( 9, LOW);
+  delay(500);
+  */
+ Serial.print("test");
+ Serial1.print("split");
+
+#if 1
+  digitalWrite(12, HIGH); //500
+  digitalWrite(11, HIGH);
+  digitalWrite(10, LOW);
+  digitalWrite( 9, LOW);
+  delay(200);
+
+  digitalWrite(12, LOW); //1000
+  digitalWrite(11, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite( 9, LOW);
+  delay(200);
+
+  digitalWrite(12, HIGH); //1500
+  digitalWrite(11, LOW);
+  digitalWrite(10, HIGH);
+  digitalWrite( 9, LOW);
+  delay(200);
+  
+  digitalWrite(12, HIGH); //2000
+  digitalWrite(11, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite( 9, HIGH);
+  delay(200);
+#endif
 }
